@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class enemyGlitch : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class enemyGlitch : MonoBehaviour
 		//click our position into a new random position
 		transform.position += new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), Random.Range(-3f, 3f));
 
-		//recurse in one half a second (by the way, Invoke is my favorite think in MonoBehavior -more on this later)
-		Invoke("Jump", 0.5f);
+		//recurse in one half a second (by the way, Invoke is my favorite think in MonoBehavior -more on this later), the rate at which we jump around is relative to the amount of health we have
+		Invoke("Jump", GameObject.Find("Enemy").GetComponent<RectTransform>().localScale.x * 2f + 0.1f);
 	}
 }
